@@ -3,11 +3,7 @@ const Role = require("../models/Role");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
-
-exports.register = async (req, res) => {
-
-  const generateAccessToken = (user) => {
+const generateAccessToken = (user) => {
   return jwt.sign(
     {
       id: user._id,
@@ -26,6 +22,8 @@ const generateRefreshToken = (user) => {
     { expiresIn: "7d" }
   );
 };
+
+exports.register = async (req, res) => {
 
   const { fullName, email, password, role } = req.body;
 
